@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>银河战力党</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="game-title">
+  <h1>银河战力党</h1>
+  <div class="subtitle">Galaxy Power Party</div>
+</header>
+
+<div id="app">
+
+  <div class="panel" id="panel-top">
+    <div class="portrait" id="portrait-top" data-side="top">
+      <div class="portrait-placeholder">立绘</div>
+      <div class="hp-overlay" id="hp-top">— / —</div>
+    </div>
+    <div class="right-col">
+      <div class="dice-area">
+        <div class="dice-list" id="dice-top"></div>
+        <div class="dice-actions" id="actions-top"></div>
+      </div>
+      <div class="select-area" id="selarea-top">
+        <div class="buff-bar" id="buffs-top"></div>
+        <div class="selected-dice" id="sel-top"></div>
+        <div class="formula" id="formula-top"></div>
+        <div class="final-value" id="final-top"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="coin-row">
+    <div class="round-info" id="roundInfo">准备</div>
+    <div class="coin" id="coin">?</div>
+    <div class="btn-restart" id="btnRestart" title="重开">↻</div>
+  </div>
+
+  <div class="panel" id="panel-bottom">
+    <div class="portrait" id="portrait-bottom" data-side="bottom">
+      <div class="portrait-placeholder">立绘</div>
+      <div class="hp-overlay" id="hp-bottom">— / —</div>
+    </div>
+    <div class="right-col">
+      <div class="dice-area">
+        <div class="dice-list" id="dice-bottom"></div>
+        <div class="dice-actions" id="actions-bottom"></div>
+      </div>
+      <div class="select-area" id="selarea-bottom">
+        <div class="buff-bar" id="buffs-bottom"></div>
+        <div class="selected-dice" id="sel-bottom"></div>
+        <div class="formula" id="formula-bottom"></div>
+        <div class="final-value" id="final-bottom"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" id="modalClose">×</button>
+    <div class="modal-left">
+      <div class="modal-portrait">立绘</div>
+    </div>
+    <div class="modal-right">
+      <h2 id="modalName">—</h2>
+      <div class="modal-id" id="modalId">—</div>
+      <div class="modal-stats" id="modalStats"></div>
+      <div class="modal-section">
+        <div class="modal-label">技能</div>
+        <div class="modal-skills" id="modalSkills">—</div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-label">简介</div>
+        <div class="modal-desc" id="modalDesc">—</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="picker-overlay" id="picker">
+  <div class="picker">
+    <button class="picker-close" id="pickerClose">×</button>
+    <div class="picker-title" id="pickerTitle">选择你的角色</div>
+    <div class="picker-body">
+      <div class="picker-list" id="pickerList"></div>
+      <div class="picker-detail">
+        <div class="picker-detail-name" id="pickerDetailName">—</div>
+        <div class="picker-detail-id" id="pickerDetailId">—</div>
+        <div class="picker-detail-stats" id="pickerDetailStats"></div>
+        <div class="picker-detail-section">
+          <div class="picker-detail-label">技能</div>
+          <div class="picker-detail-skills" id="pickerDetailSkills">—</div>
+        </div>
+        <div class="picker-detail-section">
+          <div class="picker-detail-label">耀彩骰</div>
+          <div class="picker-detail-jewel" id="pickerDetailJewel">—</div>
+        </div>
+        <div class="picker-detail-section">
+          <div class="picker-detail-label">简介</div>
+          <div class="picker-detail-desc" id="pickerDetailDesc">—</div>
+        </div>
+      </div>
+    </div>
+    <div class="picker-footer">
+      <button class="btn btn-random" id="pickerRandom">随机选择</button>
+      <button class="btn btn-confirm" id="pickerConfirm" disabled>确定</button>
+    </div>
+  </div>
+</div>
+
+<div class="jewel-picker-overlay" id="jewelPicker">
+  <div class="jewel-picker">
+    <button class="picker-close" id="jewelPickerClose">×</button>
+    <div class="jewel-picker-title">选择耀彩骰</div>
+    <div class="jewel-picker-body" id="jewelPickerList"></div>
+    <div class="jewel-picker-footer">
+      <button class="btn btn-confirm" id="jewelPickerConfirm" disabled>确定</button>
+    </div>
+  </div>
+</div>
+
+<div class="tip-overlay" id="tipModal">
+  <div class="tip-box">
+    <div class="tip-title" id="tipTitle"></div>
+    <div class="tip-desc" id="tipDesc"></div>
+  </div>
+</div>
+
+<div class="confirm-overlay" id="confirmBox">
+  <div class="confirm-box">
+    <div class="confirm-title" id="confirmTitle"></div>
+    <div class="confirm-desc" id="confirmDesc"></div>
+    <div class="confirm-actions">
+      <button class="btn btn-reroll" id="confirmCancel">取消</button>
+      <button class="btn btn-confirm" id="confirmOk">确认</button>
+    </div>
+  </div>
+</div>
+
+<div class="result-overlay" id="result">
+  <div class="result-box">
+    <h1 id="resultTitle">—</h1>
+    <button id="btnAgain">再来一局</button>
+  </div>
+</div>
+
+<script src="data/global_buffs.js"></script>
+<script src="data/packs.js"></script>
+
+<script src="js/events.js"></script>
+<script src="js/stages.js"></script>
+<script src="js/event_defs.js"></script>
+<script src="js/stage_defs.js"></script>
+
+<script src="js/buff_registry.js"></script>
+<script src="js/jewel_registry.js"></script>
+<script src="js/loader.js"></script>
+<script src="js/constants.js"></script>
+<script src="js/dice_behaviors.js"></script>
+<script src="js/background.js"></script>
+<script src="js/state.js"></script>
+<script src="js/effects.js"></script>
+<script src="js/render.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/flow.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
